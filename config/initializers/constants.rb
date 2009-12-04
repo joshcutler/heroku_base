@@ -1,1 +1,1 @@
-APP_NAME = "Reminders"
+APP_NAME = ""
