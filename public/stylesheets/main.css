@@ -1,0 +1,40 @@
+#header {
+  height: 90px;
+  padding: 0 10px;
+  border-bottom: gray solid 1px; }
+
+#container {
+  width: 980px;
+  margin: 0 auto; }
+
+.flash {
+  height: 30px;
+  line-height: 30px; }
+
+.flash_notice {
+  color: green; }
+
+.flash_error {
+  color: red; }
+
+.error {
+  color: red; }
+
+
+table {
+  width: 100%; }
+
+textarea {
+  height: 100px; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.clear {
+  clear: both; }
+
+.bold {
+  font-weight: bold; }

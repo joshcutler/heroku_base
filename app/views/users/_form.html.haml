@@ -1,0 +1,19 @@
+= f.label :login
+%br
+= f.text_field :login
+%br
+%br
+= f.label :email
+%br
+= f.text_field :email
+%br
+%br
+= f.label :password, f.object.new_record? ? nil : "Change Password"
+%br
+= f.password_field :password
+%br
+%br
+= f.label :password_confirmation
+%br
+= f.password_field :password_confirmation
+%br
