@@ -1,11 +1,11 @@
 = xss_terminate
 
-+xss_terminate+ is a plugin in that makes stripping and sanitizing HTML 
++xss_terminate+ is a plugin in that makes stripping and sanitizing HTML
 stupid-simple. Install and forget. And forget about forgetting to <tt>h()</tt>
 your output, because you won't need to anymore.
 
 But +xss_terminate+ is also flexible. By default, it will strip all HTML tags
-from user input. This is usually what you want, but sometimes you need users to be 
+from user input. This is usually what you want, but sometimes you need users to be
 able to enter HTML. The plugin allows you remove bad HTML with your choice
 of two whitelist-based sanitizers, or to skip HTML sanitization entirely on
 a per-field basis.
@@ -25,12 +25,12 @@ A note on your choices.
 
 == Usage
 
-Installing the plugin creates a +before_save+ hook that will strip HTML tags 
+Installing the plugin creates a +before_save+ hook that will strip HTML tags
 from all string and text fields. No further configuration is necessary if this
-is what you want. To customize the behavior, you use the +xss_terminate+ class 
+is what you want. To customize the behavior, you use the +xss_terminate+ class
 method.
 
-To exempt some fields from sanitization, use the <tt>:except</tt> option 
+To exempt some fields from sanitization, use the <tt>:except</tt> option
 with a list of fields not to process:
 
  class Comment < ActiveRecord::Base
@@ -42,15 +42,15 @@ To sanitize HTML with Rails's built-in sanitization, use the <tt>:sanitize</tt> 
   class Review < ActiveRecord::Base
     xss_terminate :sanitize => [ :body, :author_name]
   end
- 
-To sanitize HTML with {HTML5Lib}[http://code.google.com/p/html5lib/] 
-(<tt>gem install html5</tt> to get it), use the <tt>:html5lib_sanitize</tt> 
+
+To sanitize HTML with {HTML5Lib}[http://code.google.com/p/html5lib/]
+(<tt>gem install html5</tt> to get it), use the <tt>:html5lib_sanitize</tt>
 option with a list of fields to sanitize:
 
  class Entry < ActiveRecord::Base
    xss_terminate :html5lib_sanitize => [ :body, :author_name ]
  end
- 
+
 You can combine multiple options if you have some fields you would like skipped
 and others sanitized. Fields not listed in the option arrays will be stripped.
 
@@ -60,7 +60,7 @@ and others sanitized. Fields not listed in the option arrays will be stripped.
 
 == Sanitizing existing records
 
-After installing +xss_terminate+ and configuring it to your liking, you can 
+After installing +xss_terminate+ and configuring it to your liking, you can
 run <tt>rake xss_terminate MODELS=Foo,Bar,Baz</tt> to execute it against your
 existing records. This will load each model found and save it again to invoke
 the before_save hook.
@@ -83,7 +83,7 @@ the before_save hook.
 
 == Credits
 
-Written by {Luke Francl}[http://railspikes.com] and based on acts_as_sanitized by 
+Written by {Luke Francl}[http://railspikes.com] and based on acts_as_sanitized by
 {Alex Payne}[http://www.al3x.net].
 
 HTML5Lib sanitization by {Jacques Distler}[http://golem.ph.utexas.edu/~distler].
@@ -92,5 +92,5 @@ Bug fixes and reports from a cast of thousands.
 
 == License
 
-MIT License, except for lib/html5lib_sanitize.rb which is under the 
+MIT License, except for lib/html5lib_sanitize.rb which is under the
 Ruby license and copyright to Jacques Distler.
