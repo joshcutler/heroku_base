@@ -14,28 +14,28 @@ module XssTerminate
         :html5lib_sanitize => (options[:html5lib_sanitize] || []),
         :sanitize => (options[:sanitize] || [])
       })
-      
+
       class_inheritable_reader :xss_terminate_options
-      
+
       include XssTerminate::InstanceMethods
     end
   end
-  
+
   module InstanceMethods
 
     def sanitize_fields
       # fix a bug with Rails internal AR::Base models that get loaded before
       # the plugin, like CGI::Sessions::ActiveRecordStore::Session
       return if xss_terminate_options.nil?
-      
+
       self.class.columns.each do |column|
         next unless (column.type == :string || column.type == :text)
-        
+
         field = column.name.to_sym
         value = self[field]
 
         next if value.nil? || !value.is_a?(String)
-        
+
         if xss_terminate_options[:except].include?(field)
           next
         elsif xss_terminate_options[:html5lib_sanitize].include?(field)
@@ -46,7 +46,7 @@ module XssTerminate
           self[field] = RailsSanitize.full_sanitizer.sanitize(value)
         end
       end
-      
+
     end
   end
 end

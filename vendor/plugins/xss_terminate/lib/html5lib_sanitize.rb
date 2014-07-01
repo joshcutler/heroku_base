@@ -1,6 +1,6 @@
 # == Introduction
 #
-# This module provides sanitization of XHTML+MathML+SVG 
+# This module provides sanitization of XHTML+MathML+SVG
 # and of inline style attributes. Its genesis is {described here}[http://golem.ph.utexas.edu/~distler/blog/archives/001181.html].
 #
 # Uses the {HTML5lib parser}[http://code.google.com/p/html5lib/], so that the parsing behaviour should
@@ -65,7 +65,7 @@ class HTML5libSanitize
       parsed = XHTMLParser.parse_fragment(html.to_ncr, {:tokenizer => HTMLSanitizer,
         :lowercase_element_name => false, :lowercase_attr_name => false,
         :encoding => @encoding, :tree => @treebuilder })
-    end      
+    end
     return parsed if @to_tree
     return parsed.to_s
   end
@@ -99,7 +99,7 @@ class HTML5libSanitize
     else
       parsed = HTMLParser.parse_fragment(html.to_ncr, {:tokenizer => HTMLSanitizer,
         :encoding => @encoding, :tree => @treebuilder })
-    end 
+    end
     return parsed if @to_tree
     return parsed.to_s
   end
@@ -139,7 +139,7 @@ class String
        | [\xC2-\xDF][\x80-\xBF]             # non-overlong 2-byte
        |  \xE0[\xA0-\xBF][\x80-\xBF]        # excluding overlongs
        | [\xE1-\xEC\xEE][\x80-\xBF]{2}      # straight 3-byte
-       |  \xEF[\x80-\xBE]{2}                # 
+       |  \xEF[\x80-\xBE]{2}                #
        |  \xEF\xBF[\x80-\xBD]               # excluding U+fffe and U+ffff
        |  \xED[\x80-\x9F][\x80-\xBF]        # excluding surrogates
        |  \xF0[\x90-\xBF][\x80-\xBF]{2}     # planes 1-3
@@ -149,7 +149,7 @@ class String
    end
 #++
 
-#:stopdoc: 
+#:stopdoc:
   MATHML_ENTITIES = {
 	'Alpha' => '&#x0391;',
 	'Beta' => '&#x0392;',
@@ -2359,13 +2359,13 @@ module REXML #:nodoc:
       }
       return self
     end
-    
+
 # Convert XHTML+MathML Named Entities in a REXML::Element to UTF-8
 #
 #  :call-seq:
 #     tree.to_utf8  -> REXML::Element
 #
-# Note that this method needs to traverse the entire tree, converting text nodes and attributes 
+# Note that this method needs to traverse the entire tree, converting text nodes and attributes
 # for each element. This can be SLOW. It will often be faster to serialize to a string and then
 # use String.to_utf8 instead.
 #
